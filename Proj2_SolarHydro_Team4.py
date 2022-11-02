@@ -5,6 +5,7 @@ import math
 energyOut = 120
 gravity = 9.81
 waterDensity = 1000
+radiusRes = 112.5
 
 # user-input variables
 pE = input('Pump Efficiency value (unitless): ')
@@ -32,4 +33,6 @@ bendCoefficientTwo = float(bCT)
 turbineEfficiency = float(tE)
 flowRateTurbine = float(fRT)
 
+# calculations
+resSurfArea = 2*(math.pi * math.pow(radiusRes, 2)) + 2*(math.pi*radiusRes*reservoirDepth)
 
