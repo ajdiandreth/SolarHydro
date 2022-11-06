@@ -1,4 +1,5 @@
-# this program is designed to 
+# this program is designed to calculate and output the surface area of the resevoir, the maximum system efficiency and system efficiency, the input energy, the times to 
+# fill/empty, and the energy out after twelve hours.
 import math
 
 # constants
@@ -48,7 +49,7 @@ else:
     timeDownOne = (((usableWaterVolume / volumetricFlowDownOne) / 60) / 60)
     if timeDownOne > 12:
         print("To long.")
-    elif timeDownOne <= 12 and timeDownOne > 10
+    elif timeDownOne <= 12 and timeDownOne > 10:
         fillTime = (((usableWaterVolume / flowRatePump) / 60) / 60)
         velocityUp = flowRatePump / (((pipeDiameter/2)^2) * math.pi)
         energyInJ = (usableWaterMass((gravity * (elevationOfBottomRes + reservoirDepth - 2)) - (pipeFriction * pipeLength * ((velocityUp^2)/2)) - (bendCoefficientTwo * velocityUp^2) - ((bendCoefficientOne * velocityUp^2)/2))) / (1 - (1 - pumpEfficiency))
