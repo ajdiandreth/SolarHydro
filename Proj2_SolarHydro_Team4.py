@@ -35,4 +35,13 @@ flowRateTurbine = float(fRT)
 
 # calculations
 resSurfArea = 2*(math.pi * math.pow(radiusRes, 2)) + 2*(math.pi*radiusRes*reservoirDepth)
+energyPumpLoss = ((1/pumpEfficiency) - 1)
+mass = waterDensity * flowRatePump * 6
+velocityDown = flowRateTurbine / math.pi
+velocityUp = flowRatePump / math.pi
+height = mass * gravity * (elevationOfBottomRes + 2 + (elevationOfBottomRes/2))
+bendCoVel = mass * (bendCoefficientOne * pow(velocityUp, 2)) / 2
+bendCoVelTwo = mass * bendCoefficientTwo * pow(velocityUp, 2)
+frictionLenVel = mass * (pipeFriction * pipeLength * pow(velocityUp, 2)) / (2 * pipeDiameter)
+energyIn = (height + frictionLenVel + bendCoVelTwo + bendCoVel) / energyPumpLoss
 
