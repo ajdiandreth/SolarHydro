@@ -35,13 +35,13 @@ turbineEfficiency = float(tE)
 flowRateTurbine = float(fRT)
 
 # calculations
-resSurfArea = 2*(math.pi * math.pow(radiusRes, 2)) + 2*(math.pi*radiusRes*reservoirDepth)
+resSurfArea = 2*(math.pi * math.pow(radiusRes, 2)) + 2*(math.pi * radiusRes * reservoirDepth)
 energyOutJ = energyOut * (3.6 * math.pow(10, 9))
-resSurfArea = 2*(math.pi * math.pow(radiusRes, 2)) + 2*(math.pi*radiusRes*reservoirDepth)
 usableWaterVolume = math.pi * math.pow(radiusRes, 2) * (reservoirDepth - pipeDiameter)
 usableWaterMass = usableWaterVolume * waterDensity
 turbineOneLoss = energyOutJ / (1 - ((1/.89)-1))
-velocityOneDown = (energyOutJ + turbineOneLoss - (usableWaterMass * (gravity * (elevationOfBottomRes + reservoirDepth - 2)))/(-(((pipeFriction * pipeLength) /4 ) + bendCoefficientTwo + (bendCoefficientOne / 2))
+velocityOneDown = (energyOutJ + turbineOneLoss - (usableWaterMass * (gravity * (elevationOfBottomRes + reservoirDepth - 2)))/(-(((pipeFriction 
+                   * pipeLength) / (2 * pipeDiameter)) + bendCoefficientTwo + (bendCoefficientOne / 2))
 if velocityOneDown <= 0:
     print("Not enough energy stored for given energy losses.")
 else:
@@ -52,7 +52,8 @@ else:
     elif timeDownOne <= 12 and timeDownOne > 10:
         fillTime = (((usableWaterVolume / flowRatePump) / 60) / 60)
         velocityUp = flowRatePump / (((pipeDiameter/2)^2) * math.pi)
-        energyInJ = (usableWaterMass((gravity * (elevationOfBottomRes + reservoirDepth - 2)) - (pipeFriction * pipeLength * ((velocityUp^2)/2)) - (bendCoefficientTwo * velocityUp^2) - ((bendCoefficientOne * velocityUp^2)/2))) / (1 - (1 - pumpEfficiency))
+        energyInJ = (usableWaterMass((gravity * (elevationOfBottomRes + reservoirDepth - 2)) - (pipeFriction * pipeLength * ((velocityUp^2)/2)) - 
+                    (bendCoefficientTwo * velocityUp^2) - ((bendCoefficientOne * velocityUp^2)/(2 * pipeDiameter))) / (1 - (1 - pumpEfficiency))
         energyIn = energyInJ / (3.6 * math.pow(10, 9))
         systemEfficiency = energyOut / energyIn
         print("Reservoir Surface Area: ", resSurfArea)
@@ -63,11 +64,13 @@ else:
     elif timeDownOne <= 10:
         volumetricFlowDownTwo = usableWaterVolume / (12 * 60 * 60)
         velocityTwoDown = volumetricFlowDownTwo / (((pipeDiameter/2)^2) * math.pi)
-        energyOutTwelveHourJ = (usableWaterMass((gravity * (elevationOfBottomRes + reservoirDepth - 2)) - (pipeFriction * pipeLength * ((velocityTwoDown^2)/2)) - (bendCoefficientTwo * velocityTwoDown^2) - ((bendCoefficientOne * velocityTwoDown^2)/2))) / (1 + ((1/turbineEfficiency)-1))
+        energyOutTwelveHourJ = (usableWaterMass((gravity * (elevationOfBottomRes + reservoirDepth - 2)) - (pipeFriction * pipeLength * ((velocityTwoDown^2)/2)) - 
+                                (bendCoefficientTwo * velocityTwoDown^2) - ((bendCoefficientOne * velocityTwoDown^2)/(2 * pipeDiameter)) / (1 + ((1/turbineEfficiency)-1))
         energyoutTwelveHour = energyOutTwelveHourJ / (3.6 * math.pow(10, 9))
         fillTime = (((usableWaterVolume / flowRatePump) / 60) / 60)
         velocityUp = flowRatePump / (((pipeDiameter/2)^2) * math.pi)
-        energyInJ = (usableWaterMass((gravity * (elevationOfBottomRes + reservoirDepth - 2)) - (pipeFriction * pipeLength * ((velocityUp^2)/2)) - (bendCoefficientTwo * velocityUp^2) - ((bendCoefficientOne * velocityUp^2)/2))) / (1 - (1 - pumpEfficiency))
+        energyInJ = (usableWaterMass((gravity * (elevationOfBottomRes + reservoirDepth - 2)) - (pipeFriction * pipeLength * ((velocityUp^2)/2)) - 
+                    (bendCoefficientTwo * velocityUp^2) - ((bendCoefficientOne * velocityUp^2)/(2 * pipeDiameter))) / (1 - (1 - pumpEfficiency))
         energyIn = energyInJ / (3.6 * math.pow(10, 9))
         systemEfficiency = energyOut / energyIn
         maxSystemEfficiency = energyoutTwelveHour / energyIn
